@@ -1,24 +1,33 @@
--- EXP - 3
--- 1. List all employees and jobs in Department 30 in descending order by salary.
- SELECT ENAME, JOB, SAL from EMPLOYEE WHERE DEPTNO = 30 ORDER BY SAL DESC ; 
- 
---  2. List job and Department Number of employees whose name are five letters long begin with “A” and end with “N”.
-SELECT ENAME, JOB, DEPTNO from EMPLOYEE WHERE ENAME LIKE 'A___N' ; 
+#Exp2
+-- Perform Following Query using Employee Table. (Retrieving Data)
 
--- 3. Display the name of employees whose name start with alphabet S.
-SELECT ENAME from EMPLOYEE WHERE ENAME LIKE'S%' ;
+-- 1. List all distinct job in Employee
 
--- 4. Display the names of employees whose name ends with alphabet S.
-SELECT ENAME from EMPLOYEE WHERE ENAME LIKE '%S' ;
+SELECT distinct job from employee;
 
--- 5. Display the names of employees working in department number 10 or 20 or 40 or employees working as clerks, salesman or analyst
-SELECT ENAME from EMPLOYEE WHERE DEPTNO IN(10,20,30) AND JOB IN ('CLERK','SALESMAN','ANALYST');
+-- 2. List all information about employee in Department Number 30.
+SELECT * from employee where DEPTno=30;
+-- 3. Find all department number with department names greater than 20.
+SELECT * from employee where DEPTno > 20;
 
--- 6. Display employee number and names for employees who earn commission.
-SELECT ENAME, EMPNO FROM Employee WHERE COMM > 0;
+-- 4. Find all information about all the managers as well as the clerks in department 30
+SELECT job from employee WHERE job in ('Manager' , 'Clerk') AND DEPTno = 30;
 
--- 7. Display employee number and total salary for each employee
-SELECT EMPNO, SAL + IFNULL('COMM',0 ) AS TOTAL_SALARY FROM  employee ;
+-- 5. List the Employee name, Employee numbers and department of all clerks.
+SELECT ENAME, EMPNO, DEPTNO from employee WHERE job = 'Clerk' ;
 
--- 8. Display employee number and annual salary for each employee.
-SELECT EMPNO, SAL + IFNULL ('COMM', 0 )*12 AS ANNUAL SALARY FROM EMPLOYEE ;
+-- 6. Find all managers not in department 30
+SELECT * FROM employee WHERE job = 'MANAGER' AND DEPTNO <>30;
+
+-- 7. List information about all Employees in department 10 who are not manager or clerks.
+
+SELECT * from employee  WHERE JOB not in ('MANAGER','CLERK') AND DEPTNO = 10;
+
+-- 8. Find Employees and jobs earning between 1200 and 1400.
+SELECT * FROM employee WHERE sal BETWEEN 1200 AND 1400;
+
+-- 9. List Name and Department Number of employee who are clerks, analyst or salesman
+SELECT ENAME, DEPTNO from employee WHERE JOB IN ('CLERK','SALESMAN','ANALYST') ; 
+
+-- 10. List Name and Department Number of employee whose names began with M.
+SELECT ENAME, DEPTNO from EMPLOYEE WHERE ENAME LIKE 'M%' ;
